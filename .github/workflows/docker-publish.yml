@@ -32,6 +32,7 @@ jobs:
         context: .
         file: Dockerfile
         push: true
-        tags: epi1eptick1d/calc:${{ env.GIT_SHA }},epi1eptick1d/calc:latest
+        tags: s1kwer/calc:${{ env.GIT_SHA }},s1kwer/calc:latest
+
 
 #1
