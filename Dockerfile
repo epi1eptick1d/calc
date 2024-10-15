@@ -1,11 +1,13 @@
-# Використовуємо базовий образ з компілятором GCC
-FROM gcc:latest
+FROM debian:latest
 
-# Встановлюємо робочу директорію
+RUN apt-get update && \
+    apt-get install -y gcc libcunit1-dev && \
+    apt-get clean
+
 WORKDIR /app
 
-# Копіюємо всі файли в контейнер
-COPY . /app
+COPY . .
 
-# Компілюємо програму та запускаємо тести
-RUN make && ./test
+RUN gcc test.c -o calc -l cunit
+
+CMD ["./calc"]
