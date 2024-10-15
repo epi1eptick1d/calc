@@ -48,7 +48,7 @@ jobs:
         context: .
         file: Dockerfile
         push: true
-        tags: epi1eptick1d/calc:test
+        tags: s1kwer/calc:test
 
     - name: Run e2e tests
-      run: docker run epi1eptick1d/calc:test ./e2e-tests.sh
+      run: docker run s1kwer/calc:test ./e2e-tests.sh
