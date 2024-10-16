@@ -1,4 +1,4 @@
-name: Run Unit Tests
+name: CI
 
 on:
   pull_request:
@@ -13,16 +13,10 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Install Dependencies
+    - name: Set up Docker Build
       run: |
-        sudo apt-get update
-        sudo apt-get install -y gcc libcunit1-dev
+        docker build -t calculator-test -f local.dockerfile .
 
-    - name: Compile and run tests
+    - name: Run Unit Tests
       run: |
-        gcc -c calculator.c -o calculator.o
-        gcc -c test.c -o test.o
-
-        gcc -o test calculator.o test.o -lcunit
-
-        ./test
+        docker run --rm calculator-test
