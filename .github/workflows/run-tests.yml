@@ -1,29 +1,26 @@
-name: Run Tests
+name: Run Unit Tests
 
 on:
   pull_request:
     branches:
-      - main
+      - main 
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Set up C compiler
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y gcc
-        sudo apt-get install -y libcunit1-dev
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential
+          sudo apt-get install -y libcunit1 libcunit1-doc libcunit1-dev
 
-    - name: Compile calculator.c
-      run: gcc -c calculator.c -o calculator.o
-
-    - name: Compile test.c
-      run: gcc calculator.o test.c -o test -lcunit
-
-    - name: Run tests
-      run: ./test
+      - name: Compile and run tests
+        run: |
+          gcc -o calculator.o calculator.c
+          gcc -o test test.c -lcunit
+          ./test
