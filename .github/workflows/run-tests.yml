@@ -15,7 +15,7 @@ jobs:
 
     - name: Set up Docker Build
       run: |
-        docker build -t calculator-test -f local.dockerfile .
+        docker build -t calculator-test -f local.Dockerfile .
 
     - name: Run Unit Tests
       run: |
