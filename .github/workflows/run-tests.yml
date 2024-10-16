@@ -10,20 +10,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-      - name: Install dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y build-essential
-          sudo apt-get install -y libcunit1 libcunit1-doc libcunit1-dev
+    - name: Install Dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y gcc libcunit1-dev
 
-      - name: Compile calculator
-        run: |
-          gcc -c calculator.c -o calculator.o  
-
-      - name: Compile and run tests
-        run: |
-          gcc test.c calculator.o -o test -lcunit 
-          ./test 
+    - name: Compile and run tests
+      run: |
+        gcc -c calculator.c -o calculator.o
+        gcc -c test.c -o test.o
+        gcc test.o calculator.o -o test -lcunit
+        ./test
