@@ -1,0 +1,28 @@
+name: Run Tests
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up C compiler
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y gcc
+
+    - name: Compile calculator.c
+      run: gcc -c calculator.c -o calculator.o
+
+    - name: Compile test.c
+      run: gcc calculator.o test.c -o test
+
+    - name: Run tests
+      run: ./test

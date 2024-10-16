@@ -1,6 +1,6 @@
 all: calculator.o test
 
-calculator.o: calculator.c calculator.h
+calculator.o: calculator.c
 	gcc -c calculator.c -o calculator.o
 
 test: calculator.o test.c
