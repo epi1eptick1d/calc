@@ -1,0 +1,22 @@
+name: CI
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Docker Build
+      run: |
+        docker build -t calculator-test -f local.Dockerfile .
+
+    - name: Run Unit Tests
+      run: |
+        docker run --rm calculator-test
