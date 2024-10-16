@@ -10,19 +10,19 @@ void test_addition(void) {
 }
 
 void test_subtraction(void) {
-    CU_ASSERT_DOUBLE_EQUAL(calculate(5, 6, '-'), 1, PRECISION);
+    CU_ASSERT_DOUBLE_EQUAL(calculate(5, 6, '-'), -1, PRECISION);
 }
 
 void test_multiplication(void) {
-    CU_ASSERT_DOUBLE_EQUAL(calculate(5, 6, 'x'), 1, PRECISION);
+    CU_ASSERT_DOUBLE_EQUAL(calculate(5, 6, 'x'), 30, PRECISION);
 }
 
 void test_division(void) {
-    CU_ASSERT_DOUBLE_EQUAL(calculate(5, 6, '/'), 1, PRECISION);
+    CU_ASSERT_DOUBLE_EQUAL(calculate(5, 6, '/'), 0.8333333, PRECISION);
 }
 
 void test_division_by_zero(void) {
-    CU_ASSERT_DOUBLE_EQUAL(calculate(5, 0, '/'), 1, PRECISION);
+    CU_ASSERT_DOUBLE_EQUAL(calculate(5, 0, '/'), 0, PRECISION);
     CU_ASSERT(err_code == ERR_DIV_BY_ZERO);
 }
 
