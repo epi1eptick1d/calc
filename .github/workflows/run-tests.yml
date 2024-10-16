@@ -20,9 +20,9 @@ jobs:
 
     - name: Compile and run tests
       run: |
-        gcc -c calculator.c -o calculator.o -fno-common
-        gcc -c test.c -o test.o -fno-common
+        gcc -c calculator.c -o calculator.o
+        gcc -c test.c -o test.o
 
-        gcc test.o calculator.o -o test -lcunit
+        gcc -o test calculator.o test.o -lcunit
 
         ./test
