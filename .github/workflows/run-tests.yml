@@ -3,7 +3,7 @@ name: Run Unit Tests
 on:
   pull_request:
     branches:
-      - main 
+      - main
 
 jobs:
   build:
@@ -19,8 +19,11 @@ jobs:
           sudo apt-get install -y build-essential
           sudo apt-get install -y libcunit1 libcunit1-doc libcunit1-dev
 
+      - name: Compile calculator
+        run: |
+          gcc -c calculator.c -o calculator.o  
+
       - name: Compile and run tests
         run: |
-          gcc -o calculator.o calculator.c
-          gcc -o test test.c -lcunit
-          ./test
+          gcc test.c calculator.o -o test -lcunit 
+          ./test 
